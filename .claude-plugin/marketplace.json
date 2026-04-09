@@ -3,10 +3,13 @@
   "owner": {
     "name": "koustubh25"
   },
+  "metadata": {
+    "description": "Homelab hardware recommendation plugin with live pricing, energy modeling, and support for DIY, prebuilt, mini PC, and SBC builds."
+  },
   "plugins": [
     {
       "name": "homelab-recommender",
-      "source": ".",
+      "source": "./",
       "description": "Recommends homelab hardware (DIY, prebuilt, mini PC, SBC) based on your requirements, with live pricing and energy modeling."
     }
   ]
