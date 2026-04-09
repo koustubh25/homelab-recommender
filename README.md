@@ -2,16 +2,9 @@
 
 A Claude Code plugin that recommends homelab hardware based on your needs. Considers DIY builds, prebuilts (Mac mini, NUC, Beelink, Minisforum), used SFF workstations, and SBCs (Raspberry Pi, Rock 5, Jetson). Fetches live prices and models running costs.
 
-## Install
+## Prerequisite: Playwright MCP (recommended)
 
-```
-/plugin marketplace add koustubh25/homelab-recommender
-/plugin install homelab-recommender@homelab-recommender
-```
-
-## Setup: Playwright MCP (recommended)
-
-Live prices from major retailers (Mwave, Scorptec, Amazon, Apple, etc.) require a headless browser. Without it, the plugin falls back to lower-quality price sources.
+Live prices from major retailers (Mwave, Scorptec, Amazon, Apple, etc.) require a headless browser. Without it, the plugin falls back to lower-quality price sources. Set this up **before** installing the plugin.
 
 Add to your Claude Code MCP config:
 
@@ -33,6 +26,13 @@ Or add manually to `~/.claude.json`:
 ```
 
 Then restart Claude Code.
+
+## Install
+
+```
+/plugin marketplace add koustubh25/homelab-recommender
+/plugin install homelab-recommender@homelab-recommender
+```
 
 ## Use
 
