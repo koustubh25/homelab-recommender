@@ -1,0 +1,118 @@
+{
+  "_schema": {
+    "version": 1,
+    "description": "Region → residential electricity rate used by energy-modeler. Rates are typical residential peak/flat rates as of late 2025 / early 2026, in local currency per kWh, tax-inclusive where local convention is tax-inclusive (e.g. AU GST). If a user provides their actual rate, prefer it over these defaults.",
+    "lookup_order": [
+      "exact match on requirements.region.country + requirements.region.state_or_city",
+      "country-level _default_rate",
+      "energy-modeler falls back to a guess and flags it in the report"
+    ],
+    "fields": {
+      "rate": "Per-kWh price in local currency",
+      "currency": "ISO-4217 currency code",
+      "tax_inclusive": "True if rate already includes local sales tax (GST/VAT)",
+      "source_note": "Where this estimate came from (regulator, retailer average, etc.)",
+      "as_of": "Approximate date the rate was current; assume drift after 6 months"
+    }
+  },
+
+  "AU": {
+    "currency": "AUD",
+    "tax_inclusive": true,
+    "_default_rate": 0.30,
+    "_default_note": "Use VIC residential peak as the AU default unless state is known",
+    "as_of": "2026-01",
+    "regions": {
+      "VIC": { "rate": 0.30, "range": [0.28, 0.35], "source_note": "Melbourne residential peak average" },
+      "NSW": { "rate": 0.33, "range": [0.30, 0.38], "source_note": "Sydney residential peak average" },
+      "QLD": { "rate": 0.28, "range": [0.26, 0.32], "source_note": "Brisbane residential peak average" },
+      "SA":  { "rate": 0.40, "range": [0.36, 0.45], "source_note": "Adelaide residential peak — among highest in AU" },
+      "WA":  { "rate": 0.31, "range": [0.28, 0.34], "source_note": "Perth residential, Synergy A1 tariff" },
+      "TAS": { "rate": 0.29, "range": [0.27, 0.32], "source_note": "Hobart residential peak" },
+      "ACT": { "rate": 0.27, "range": [0.25, 0.30], "source_note": "Canberra residential peak" },
+      "NT":  { "rate": 0.28, "range": [0.26, 0.31], "source_note": "Darwin residential peak" }
+    }
+  },
+
+  "US": {
+    "currency": "USD",
+    "tax_inclusive": false,
+    "_default_rate": 0.18,
+    "_default_note": "US national residential average; varies wildly by state",
+    "as_of": "2026-01",
+    "regions": {
+      "CA": { "rate": 0.32, "range": [0.28, 0.42], "source_note": "California — among highest in US" },
+      "TX": { "rate": 0.14, "range": [0.12, 0.16], "source_note": "Texas — deregulated, low average" },
+      "NY": { "rate": 0.24, "range": [0.20, 0.30], "source_note": "New York residential peak" },
+      "WA": { "rate": 0.12, "range": [0.10, 0.14], "source_note": "Washington — hydro, very low" },
+      "FL": { "rate": 0.16, "range": [0.14, 0.18], "source_note": "Florida residential" }
+    }
+  },
+
+  "UK": {
+    "currency": "GBP",
+    "tax_inclusive": true,
+    "_default_rate": 0.27,
+    "_default_note": "UK residential under Ofgem price cap",
+    "as_of": "2026-01",
+    "regions": {
+      "ENG": { "rate": 0.27, "range": [0.24, 0.30], "source_note": "England, Ofgem price cap" },
+      "SCT": { "rate": 0.27, "range": [0.24, 0.30], "source_note": "Scotland" },
+      "WLS": { "rate": 0.27, "range": [0.24, 0.30], "source_note": "Wales" },
+      "NIR": { "rate": 0.30, "range": [0.27, 0.33], "source_note": "Northern Ireland — typically higher" }
+    }
+  },
+
+  "DE": {
+    "currency": "EUR",
+    "tax_inclusive": true,
+    "_default_rate": 0.38,
+    "as_of": "2026-01",
+    "regions": {
+      "_default": { "rate": 0.38, "range": [0.35, 0.42], "source_note": "Germany residential average — among highest in EU" }
+    }
+  },
+
+  "NL": {
+    "currency": "EUR",
+    "tax_inclusive": true,
+    "_default_rate": 0.34,
+    "as_of": "2026-01",
+    "regions": {
+      "_default": { "rate": 0.34, "range": [0.30, 0.38] }
+    }
+  },
+
+  "FR": {
+    "currency": "EUR",
+    "tax_inclusive": true,
+    "_default_rate": 0.25,
+    "as_of": "2026-01",
+    "regions": {
+      "_default": { "rate": 0.25, "range": [0.22, 0.28], "source_note": "France residential — nuclear-heavy mix keeps rates moderate" }
+    }
+  },
+
+  "CA": {
+    "currency": "CAD",
+    "tax_inclusive": false,
+    "_default_rate": 0.15,
+    "as_of": "2026-01",
+    "regions": {
+      "QC": { "rate": 0.08, "range": [0.07, 0.10], "source_note": "Quebec — hydro, very low" },
+      "ON": { "rate": 0.13, "range": [0.10, 0.18], "source_note": "Ontario — time-of-use" },
+      "BC": { "rate": 0.11, "range": [0.10, 0.13], "source_note": "British Columbia — hydro" },
+      "AB": { "rate": 0.18, "range": [0.15, 0.22], "source_note": "Alberta — deregulated, variable" }
+    }
+  },
+
+  "NZ": {
+    "currency": "NZD",
+    "tax_inclusive": true,
+    "_default_rate": 0.32,
+    "as_of": "2026-01",
+    "regions": {
+      "_default": { "rate": 0.32, "range": [0.28, 0.36] }
+    }
+  }
+}

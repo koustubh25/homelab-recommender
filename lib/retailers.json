@@ -1,0 +1,74 @@
+{
+  "_schema": {
+    "version": 1,
+    "description": "Region → retailer catalog used by price-scraper. Add a region by adding a top-level key matching requirements.region.country (ISO-3166 alpha-2). Each retailer has a category, base URL, and optional flags.",
+    "categories": {
+      "retail": "Mainstream PC parts retailer, GST/VAT inclusive, full warranty",
+      "marketplace": "Mixed new/used, third-party sellers (Amazon, eBay)",
+      "grey": "International / parallel import — flag risk in price-scraper output",
+      "used": "Used/refurb only — include only if requirements.risk_tolerance.used_marketplace == true",
+      "aggregator": "Price comparison engine — useful for cross-checks, can be stale",
+      "prebuilt_oem": "OEM direct (Apple, Minisforum, Framework, Beelink, etc.)",
+      "prebuilt_reseller": "Resells prebuilts (NUCs, mini PCs at mainstream retailers)",
+      "sbc": "Single-board computer specialist (Pi, Rock, Orange Pi, Jetson)",
+      "used_enterprise": "Refurbished enterprise SFF (HP EliteDesk, Dell OptiPlex, Lenovo ThinkCentre)"
+    },
+    "flags": {
+      "ships_to_region": "Confirmed ships to this region",
+      "import_duty_likely": "Cross-border, expect duty/GST on import",
+      "flash_sale_pricing": "Listed prices often unreliable due to flash sales (e.g. AliExpress)"
+    }
+  },
+
+  "AU": {
+    "_default": true,
+    "currency": "AUD",
+    "tax_inclusive": true,
+    "tax_note": "All AU residential retail prices are GST-inclusive",
+    "retailers": [
+      { "name": "Mwave", "url": "https://www.mwave.com.au", "category": "retail" },
+      { "name": "Scorptec", "url": "https://www.scorptec.com.au", "category": "retail" },
+      { "name": "PC Case Gear", "url": "https://www.pccasegear.com", "category": "retail" },
+      { "name": "Umart", "url": "https://www.umart.com.au", "category": "retail" },
+      { "name": "PLE Computers", "url": "https://www.ple.com.au", "category": "retail" },
+      { "name": "Techbuy", "url": "https://www.techbuy.com.au", "category": "retail" },
+      { "name": "Centre Com", "url": "https://www.centrecom.com.au", "category": "retail" },
+
+      { "name": "Amazon AU", "url": "https://www.amazon.com.au", "category": "marketplace" },
+      { "name": "eBay AU", "url": "https://www.ebay.com.au", "category": "marketplace" },
+
+      { "name": "AliExpress", "url": "https://www.aliexpress.com", "category": "grey", "flags": ["flash_sale_pricing", "import_duty_likely"], "notes": "Shipping to AU often blocked on individual SKUs; verify before recommending" },
+      { "name": "Newegg Global", "url": "https://www.newegg.com", "category": "grey", "flags": ["import_duty_likely"] },
+
+      { "name": "Facebook Marketplace", "url": "https://www.facebook.com/marketplace", "category": "used", "notes": "Filter by city: Melbourne, Sydney, Brisbane, Perth, Adelaide" },
+      { "name": "Gumtree AU", "url": "https://www.gumtree.com.au", "category": "used" },
+
+      { "name": "StaticICE", "url": "https://www.staticice.com.au", "category": "aggregator" },
+      { "name": "PriceMe", "url": "https://www.priceme.com.au", "category": "aggregator" },
+      { "name": "Getprice", "url": "https://www.getprice.com.au", "category": "aggregator" },
+
+      { "name": "Apple AU", "url": "https://www.apple.com/au", "category": "prebuilt_oem", "products": ["mac_mini", "mac_studio", "macbook"] },
+      { "name": "Apple Refurbished AU", "url": "https://www.apple.com/au/shop/refurbished", "category": "prebuilt_oem", "notes": "~15% cheaper than new, full warranty — always check for Mac recommendations" },
+      { "name": "Minisforum", "url": "https://store.minisforum.com", "category": "prebuilt_oem", "products": ["MS-01", "UM series", "NPB series"] },
+      { "name": "Beelink", "url": "https://www.bee-link.com", "category": "prebuilt_oem", "products": ["SER series", "GTR series"] },
+      { "name": "Geekom", "url": "https://www.geekompc.com", "category": "prebuilt_oem" },
+      { "name": "Framework", "url": "https://frame.work", "category": "prebuilt_oem", "notes": "Ships to AU; check shipping cost and duty" },
+
+      { "name": "PC Byte", "url": "https://www.pcbyte.com.au", "category": "used_enterprise", "notes": "Refurbished HP/Dell/Lenovo SFF — good for cheap k8s workers" },
+      { "name": "Bargain PC", "url": "https://www.bargainpc.com.au", "category": "used_enterprise" },
+
+      { "name": "Core Electronics", "url": "https://core-electronics.com.au", "category": "sbc", "products": ["raspberry_pi", "pi_accessories"], "notes": "Official AU Raspberry Pi reseller" },
+      { "name": "Little Bird Electronics", "url": "https://www.littlebird.com.au", "category": "sbc", "products": ["raspberry_pi", "rock", "orange_pi", "jetson"] },
+      { "name": "PiAustralia", "url": "https://piaustralia.com.au", "category": "sbc", "products": ["raspberry_pi"] },
+      { "name": "element14 AU", "url": "https://au.element14.com", "category": "sbc", "notes": "Industrial/volume; Jetson via NVIDIA partner channel" }
+    ]
+  },
+
+  "_region_template": {
+    "_comment": "Copy this block, rename to ISO-3166 country code, fill in retailers, set _default if appropriate. Set tax_inclusive based on whether listed prices include VAT/sales tax in this region.",
+    "currency": "USD",
+    "tax_inclusive": false,
+    "tax_note": "US listed prices typically do not include sales tax",
+    "retailers": []
+  }
+}
