@@ -4,8 +4,9 @@ A Claude Code plugin that recommends homelab hardware based on your needs. Consi
 
 ## Install
 
-```bash
-/plugin install homelab-recommender@koustubh25/homelab-recommender
+```
+/plugin marketplace add koustubh25/homelab-recommender
+/plugin install homelab-recommender@homelab-recommender
 ```
 
 ## Setup: Playwright MCP (recommended)
