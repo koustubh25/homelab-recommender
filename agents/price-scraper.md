@@ -150,6 +150,17 @@ For every quote you record, the `source_quality` field must be one of:
 
 The plan-writer uses these tiers to pick which buy link to surface (highest tier with `in_stock` wins).
 
+## Hard limits
+
+**These limits are non-negotiable. Stop when you hit any of them.**
+
+- **Max 3 retailers per part.** Don't chase a 4th quote. 3 is enough for a price range.
+- **Max 2 page loads per retailer per part.** One search page + one product page. If you can't find it in 2 loads, record `unavailable` and move on.
+- **Max 5 minutes total per candidate.** If you're still scraping after ~15 parts, you're going too deep. Wrap up with what you have.
+- **Never retry a failed retailer on the same part.** If Mwave 403s on the CPU, skip Mwave for that part. Don't try 3 different URL patterns.
+- **Stop after the preferred candidate.** Only price alternative candidates if the orchestrator explicitly asks. Most users only care about the recommended build.
+- **If a part has 0 quotes after 3 retailer attempts**, mark it `unavailable` with the best search URL you found, and move to the next part.
+
 ## Scraping strategy
 
 For each part:
