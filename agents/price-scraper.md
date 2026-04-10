@@ -1,7 +1,7 @@
 ---
 name: price-scraper
 description: Fetches live prices and buy links for a candidate build from region-appropriate retailers. Reads build-candidates.json, queries retailers, and writes priced-builds.json with min/median/max per part and source URLs. Always scrapes live — no caching.
-tools: Read, Write, WebSearch, WebFetch, Bash, Glob, mcp__playwright__*
+tools: Read, Write, WebSearch, WebFetch, Bash, Glob
 model: sonnet
 ---
 
@@ -98,7 +98,9 @@ You have three fetch tools. Pick the right one per retailer — using the wrong 
 
 ### Playwright MCP (preferred for JS-heavy sites)
 
-Use `mcp__playwright__*` tools when the retailer is JS-rendered, behind Cloudflare, or returns a stub HTML to plain HTTP fetches. This is the **only** way to get accurate live prices from these sites. Treat Playwright as the default for all major AU retailers.
+**IMPORTANT: You MUST check if Playwright MCP tools are available in your tool list before falling back to WebFetch.** The plugin declares a Playwright MCP server — look for tools with names containing `playwright` or `browser` (e.g. `browser_navigate`, `browser_snapshot`, `browser_click`). The exact tool names depend on the MCP server version. If ANY browser/playwright tools are available, use them for ALL major retailer sites listed below. **Do NOT use WebFetch for JS-heavy retailers when Playwright is available.**
+
+Use Playwright browser tools when the retailer is JS-rendered, behind Cloudflare, or returns a stub HTML to plain HTTP fetches. This is the **only** way to get accurate live prices from these sites. Treat Playwright as the default for all major AU retailers.
 
 **Always-Playwright list (AU):**
 - Mwave, Scorptec, PC Case Gear, Umart, PLE Computers, Centre Com (all gate on JS)
@@ -117,7 +119,7 @@ Use `mcp__playwright__*` tools when the retailer is JS-rendered, behind Cloudfla
 6. Record `source_quality: "playwright_direct"` and the exact URL
 7. `browser_close` between retailers to avoid context bloat
 
-If Playwright isn't available (MCP server not installed/configured), fall through to WebFetch and record `source_quality: "webfetch"` with a note that Playwright was unavailable.
+If Playwright isn't available (no browser/playwright tools in your tool list at all), fall through to WebFetch and record `source_quality: "webfetch"` with a note that Playwright was unavailable. **But first, confirm it's truly unavailable — check your tool list carefully. The plugin bundles Playwright MCP, so it should be there.**
 
 ### WebFetch (acceptable for static sites)
 

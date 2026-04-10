@@ -1,8 +1,14 @@
 {
   "name": "homelab-recommender",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Recommends homelab hardware (DIY, prebuilt, mini PC, SBC) based on your requirements, with live pricing and energy modeling.",
   "author": {
     "name": "Koustubh"
+  },
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
   }
 }
