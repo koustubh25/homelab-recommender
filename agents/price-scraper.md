@@ -119,7 +119,7 @@ Use Playwright browser tools when the retailer is JS-rendered, behind Cloudflare
 6. Record `source_quality: "playwright_direct"` and the exact URL
 7. `browser_close` between retailers to avoid context bloat
 
-If Playwright isn't available (no browser/playwright tools in your tool list at all), fall through to WebFetch and record `source_quality: "webfetch"` with a note that Playwright was unavailable. **But first, confirm it's truly unavailable — check your tool list carefully. The plugin bundles Playwright MCP, so it should be there.**
+If Playwright isn't available (no browser/playwright tools in your tool list at all), fall through to WebFetch and record `source_quality: "webfetch_direct"` or `source_quality: "webfetch_aggregator"` as appropriate, with a note that Playwright was unavailable. **But first, confirm it's truly unavailable — check your tool list carefully. The plugin bundles Playwright MCP, so it should be there.**
 
 ### WebFetch (acceptable for static sites)
 
@@ -169,7 +169,7 @@ For each part:
 2. **Start with aggregators** (StaticICE, PriceMe) to get a quick spread and discover retailers carrying the part.
 3. **Then verify at 3+ direct retailer sites** — aggregators can be stale.
 4. **For each hit, record**: retailer name, URL (product page, not search page if possible), price including GST, stock status if visible, timestamp.
-5. **If a retailer blocks scraping** (Cloudflare, JS-only, 403): fall back to WebSearch with `site:retailer.com` queries and record the search hit. Mark as `source_quality: "search_result"` rather than `"direct"`.
+5. **If a retailer blocks scraping** (Cloudflare, JS-only, 403): fall back to WebSearch with `site:retailer.com` queries and record the search hit. Mark as `source_quality: "search_result"` rather than `"playwright_direct"` or `"webfetch_direct"`.
 6. **For used marketplaces** (if enabled): record a sample of 3–5 current listings with condition notes, not a single "price".
 
 ## Prebuilt and SBC pricing notes
@@ -182,7 +182,7 @@ For each part:
 
 ## Output
 
-Write `priced-builds.json` to the current working directory:
+Write `priced-builds.json` to the current working directory. Mirror the candidate shape from `build-candidates.json`: DIY candidates use `phases`, `prebuilt`/`sbc` candidates use `unit`, and `hybrid` candidates use `unit` plus `upgrades`.
 
 ```json
 {
@@ -203,13 +203,14 @@ Write `priced-builds.json` to the current working directory:
                 "min": 489,
                 "median": 499,
                 "max": 519,
+                "low_confidence": false,
                 "quotes": [
                   {
                     "retailer": "Mwave",
                     "url": "https://www.mwave.com.au/product/…",
                     "price": 489,
                     "stock": "in_stock",
-                    "source_quality": "direct",
+                    "source_quality": "playwright_direct",
                     "timestamp": "2026-04-09T…"
                   }
                 ]
@@ -232,6 +233,46 @@ Write `priced-builds.json` to the current working directory:
   ],
   "notes": "Free-form scraping notes — e.g. 'GPU phase 2 not priced at user request', 'Peerless Assassin 120 SE stock scarce at AU retail, cheapest on AliExpress but flagged'"
 }
+```
+
+For `type: prebuilt` or `type: sbc`, replace `phases` with:
+
+```json
+"unit": {
+  "sku": "Mac mini M4 Pro 24GB/512GB",
+  "vendor": "Apple",
+  "retail": {
+    "min": 0,
+    "median": 0,
+    "max": 0,
+    "low_confidence": false,
+    "quotes": []
+  },
+  "used": null,
+  "flags": [],
+  "sku_match": "exact"
+}
+```
+
+For `type: hybrid`, include that `unit` object plus:
+
+```json
+"upgrades": [
+  {
+    "category": "ram",
+    "spec": "64GB DDR5 SODIMM kit",
+    "retail": {
+      "min": 0,
+      "median": 0,
+      "max": 0,
+      "low_confidence": false,
+      "quotes": []
+    },
+    "used": null,
+    "flags": [],
+    "sku_match": "exact"
+  }
+]
 ```
 
 ## Rules

@@ -196,13 +196,14 @@ Every row must trace to an upstream flag — don't invent risks.]
 
 _Generated [date] by homelab-recommender._
 _Prices scraped at: [timestamp from priced-builds]._
-_Retailers queried: [list from priced-builds.candidates[].phases[].parts[].retail.quotes]._
+_Retailers queried: [list from priced-builds candidate quote sources across `phases`, `unit`, and `upgrades` as applicable]._
 ```
 
 ## Part-level formatting rules
 
 - **Price:** show the median retail from priced-builds. If retail had <3 quotes, suffix with `*` and add a footnote "Low confidence — fewer than 3 retailer quotes found".
 - **Buy link:** pick the cheapest `retail.quotes` URL using this quality ladder: `playwright_direct` (in stock) → `webfetch_direct` (in stock) → `webfetch_aggregator` (in stock) → any in-stock quote → `playwright_direct` (any stock) → `webfetch_direct` (any stock) → `search_result` → "check retailers" (no link). If the chosen link is not `playwright_direct` or `webfetch_direct`, add a footnote noting source quality so the user knows to verify before buying.
+- **Candidate shape:** support all three priced-build shapes. DIY reads from `phases[].parts[]`; `prebuilt`/`sbc` reads from `unit`; `hybrid` reads from `unit` plus `upgrades[]`.
 - **Alternatives:** don't list the architect's `alternatives_considered` per part in the main table. Too much noise. Include them only if the user asks.
 - **Used parts:** if a part has `used` data and user allows marketplace, add a second row or a note — don't silently blend used prices into the median.
 - **SKU drift:** if compatibility-checker flagged a SKU mismatch, use the *actually priced* SKU and add a note explaining the substitution.

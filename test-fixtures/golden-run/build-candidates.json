@@ -1,0 +1,91 @@
+{
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "name": "Balanced Talos + LLM Tower",
+      "type": "diy",
+      "summary": "A phased AM5 tower that joins a Talos cluster now and adds stronger local inference later.",
+      "binding_constraint": "budget plus future NVIDIA upgrade path",
+      "phases": [
+        {
+          "phase": 1,
+          "goal": "Deploy a useful Talos worker immediately",
+          "parts": [
+            {
+              "category": "cpu",
+              "spec": "AMD Ryzen 7 7700",
+              "key_attrs": { "socket": "AM5", "tdp_w": 65 },
+              "rationale": "Efficient 8-core CPU with enough headroom for Talos workloads and CPU-only inference.",
+              "alternatives_considered": ["Ryzen 5 7600", "Ryzen 9 7900"],
+              "why_not_alternatives": "7600 leaves less headroom; 7900 adds cost with limited benefit for this use case."
+            },
+            {
+              "category": "motherboard",
+              "spec": "MSI B650 Tomahawk WiFi",
+              "key_attrs": { "socket": "AM5", "dimm_slots": 4 },
+              "rationale": "AM5 board with solid VRM and room for a later GPU plus storage expansion.",
+              "alternatives_considered": ["Gigabyte B650 Aorus Elite"],
+              "why_not_alternatives": "Comparable board, but this SKU had better AU availability."
+            },
+            {
+              "category": "ram",
+              "spec": "64GB DDR5-5200 (2x32GB)",
+              "key_attrs": { "capacity_gb": 64 },
+              "rationale": "Enough memory for Talos workloads today and CPU-side model headroom.",
+              "alternatives_considered": ["32GB DDR5-5600"],
+              "why_not_alternatives": "32GB is the tighter long-term limit for mixed workloads."
+            },
+            {
+              "category": "storage",
+              "spec": "2TB NVMe Gen4 SSD",
+              "key_attrs": { "capacity_tb": 2 },
+              "rationale": "Room for OS, images, and local model storage without overpaying for Gen5.",
+              "alternatives_considered": ["1TB NVMe Gen4 SSD"],
+              "why_not_alternatives": "1TB fills too quickly once models are added."
+            }
+          ],
+          "delivered_capability": "Talos worker with enough local storage and RAM for general cluster workloads and smaller quantized models."
+        },
+        {
+          "phase": 2,
+          "goal": "Add stronger local inference",
+          "parts": [
+            {
+              "category": "gpu",
+              "spec": "Used RTX 3090 24GB",
+              "key_attrs": { "vram_gb": 24, "tdp_w": 350 },
+              "rationale": "Best value path to medium-model local inference with CUDA support.",
+              "alternatives_considered": ["RTX 4060 Ti 16GB", "RTX 4090"],
+              "why_not_alternatives": "4060 Ti lacks VRAM headroom; 4090 breaks the budget."
+            },
+            {
+              "category": "psu",
+              "spec": "Corsair RM850x",
+              "key_attrs": { "wattage": 850 },
+              "rationale": "Enough headroom for the later GPU without oversizing excessively.",
+              "alternatives_considered": ["Corsair RM750e"],
+              "why_not_alternatives": "RM750e is tighter once the 3090 is added."
+            }
+          ],
+          "delivered_capability": "Talos-compatible worker with practical CUDA-based medium-model inference."
+        }
+      ],
+      "tradeoffs": "Phase 1 is intentionally CPU-only, so local inference is slower until the GPU is added.",
+      "fits_requirements": {
+        "use_cases": "pass",
+        "budget": "pass",
+        "modularity": "pass",
+        "existing_infra": "pass",
+        "form_factor": "pass",
+        "power": "pass"
+      }
+    }
+  ],
+  "recommendation": {
+    "preferred_candidate": "candidate-1",
+    "why": "It preserves Talos compatibility, stays inside the phased budget, and leaves a clean upgrade path to NVIDIA inference.",
+    "confidence": "high",
+    "confidence_notes": "Recommendation assumes the user is comfortable with a used 3090 in Phase 2."
+  },
+  "open_questions": []
+}

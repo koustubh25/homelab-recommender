@@ -1,0 +1,170 @@
+{
+  "region": "AU",
+  "currency": "AUD",
+  "scraped_at": "2026-04-11T00:00:00Z",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "phases": [
+        {
+          "phase": 1,
+          "parts": [
+            {
+              "category": "cpu",
+              "spec": "AMD Ryzen 7 7700",
+              "retail": {
+                "min": 479,
+                "median": 499,
+                "max": 519,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "Mwave",
+                    "url": "https://example.com/ryzen-7700",
+                    "price": 499,
+                    "stock": "in_stock",
+                    "source_quality": "playwright_direct",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": null,
+              "flags": [],
+              "sku_match": "exact"
+            },
+            {
+              "category": "motherboard",
+              "spec": "MSI B650 Tomahawk WiFi",
+              "retail": {
+                "min": 309,
+                "median": 329,
+                "max": 349,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "Scorptec",
+                    "url": "https://example.com/b650-tomahawk",
+                    "price": 329,
+                    "stock": "in_stock",
+                    "source_quality": "playwright_direct",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": null,
+              "flags": [],
+              "sku_match": "exact"
+            },
+            {
+              "category": "ram",
+              "spec": "64GB DDR5-5200 (2x32GB)",
+              "retail": {
+                "min": 239,
+                "median": 249,
+                "max": 269,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "Mwave",
+                    "url": "https://example.com/ddr5-64gb",
+                    "price": 249,
+                    "stock": "in_stock",
+                    "source_quality": "webfetch_direct",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": null,
+              "flags": [],
+              "sku_match": "exact"
+            },
+            {
+              "category": "storage",
+              "spec": "2TB NVMe Gen4 SSD",
+              "retail": {
+                "min": 169,
+                "median": 179,
+                "max": 189,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "Centre Com",
+                    "url": "https://example.com/2tb-nvme",
+                    "price": 179,
+                    "stock": "in_stock",
+                    "source_quality": "webfetch_direct",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": null,
+              "flags": [],
+              "sku_match": "exact"
+            }
+          ],
+          "phase_subtotal": { "min": 1196, "median": 1256, "max": 1326 }
+        },
+        {
+          "phase": 2,
+          "parts": [
+            {
+              "category": "gpu",
+              "spec": "Used RTX 3090 24GB",
+              "retail": {
+                "min": 1099,
+                "median": 1199,
+                "max": 1299,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "eBay AU",
+                    "url": "https://example.com/used-3090",
+                    "price": 1199,
+                    "stock": "in_stock",
+                    "source_quality": "search_result",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": {
+                "listing_count": 5,
+                "range_min": 1099,
+                "range_max": 1299,
+                "condition_notes": "Most listings are used gaming cards with standard coolers."
+              },
+              "flags": [],
+              "sku_match": "exact"
+            },
+            {
+              "category": "psu",
+              "spec": "Corsair RM850x",
+              "retail": {
+                "min": 189,
+                "median": 209,
+                "max": 219,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "PCCG",
+                    "url": "https://example.com/rm850x",
+                    "price": 209,
+                    "stock": "in_stock",
+                    "source_quality": "playwright_direct",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": null,
+              "flags": [],
+              "sku_match": "exact"
+            }
+          ],
+          "phase_subtotal": { "min": 1288, "median": 1408, "max": 1518 }
+        }
+      ],
+      "candidate_total": { "min": 2484, "median": 2664, "max": 2844 }
+    }
+  ],
+  "unreachable_retailers": [],
+  "notes": "Used marketplace GPU pricing is separated from retail confidence in the plan."
+}

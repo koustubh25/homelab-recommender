@@ -25,7 +25,7 @@ You need enough information to fill these fields. Cover them in whatever order f
 | `use_cases` | What will this machine do? LLM inference, general k8s workloads, NAS, media, game server, dev box, mixed? | Multi-select. Ask for primary vs secondary if mixed. |
 | `llm_details` | If LLMs: what size models? (small <8B / medium 13–34B / large 70B+). Inference only or fine-tuning? Expected usage hours/day? | Only if LLM is in use_cases. |
 | `budget` | Amount + currency. Hard cap or flexible? Phased spending OK? | Don't accept "cheap" or "reasonable" — push for a number. |
-| `region` | Country/city. Affects retailers, power cost, shipping. | Default AU-first but always confirm. |
+| `region` | Country + state/province/region code + city. Affects retailers, power cost, shipping. | Default AU-first but always confirm. Capture the state/province when known so energy rates can resolve correctly. |
 | `modularity` | Do they want to upgrade later, or one-shot build? Comfortable buying used parts? | |
 | `existing_infra` | Existing cluster/NAS/rack to integrate with? Talos? Proxmox? Bare k8s? Standalone? | Load-bearing — changes everything downstream. |
 | `form_factor` | Size constraints? Rack unit? Desktop tower OK? Must be silent? Where does it live (bedroom, garage, closet)? | |
@@ -55,7 +55,7 @@ When the interview is complete, write `requirements.json` to the current working
     "hours_per_day": 2
   },
   "budget": { "amount": 2000, "currency": "AUD", "flexible": true, "phased_ok": true },
-  "region": { "country": "AU", "city": "Melbourne" },
+  "region": { "country": "AU", "state_or_city": "VIC", "city": "Melbourne" },
   "modularity": { "upgrade_path_wanted": true, "used_parts_ok": true },
   "existing_infra": { "type": "talos_k8s", "role": "worker_node", "notes": "existing cluster is full" },
   "form_factor": { "size": "tower", "noise": "normal", "location": "home_office" },
@@ -68,6 +68,8 @@ When the interview is complete, write `requirements.json` to the current working
 ```
 
 Fields you didn't ask about should be `null`, not guessed. The `notes` field captures anything load-bearing that the schema doesn't express.
+
+For `region.state_or_city`, prefer a short state/province/region code when the country has one (`VIC`, `NSW`, `CA`, `TX`, `ENG`). If the user only gives a city, ask one quick follow-up only if the state/province is needed to disambiguate energy pricing or sourcing.
 
 After writing the file, print a 3-line summary of what you learned and tell the user the next agent (constraint-analyzer) will take it from here. Do not recommend hardware yourself.
 

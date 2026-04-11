@@ -1,0 +1,39 @@
+{
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "name": "Mac mini LLM Node",
+      "type": "prebuilt",
+      "summary": "Compact quiet standalone inference box.",
+      "binding_constraint": "silence and size",
+      "unit": {
+        "sku": "Mac mini M4 Pro 24GB/512GB",
+        "vendor": "Apple",
+        "model": "Mac mini",
+        "category": "mini_pc",
+        "key_attrs": { "ram": "24GB unified", "gpu": "integrated" },
+        "rationale": "Quiet and compact.",
+        "alternatives_considered": ["MS-01"],
+        "why_not_alternatives": "Louder",
+        "delivered_capability": "Standalone medium-model inference",
+        "tradeoffs": "No Talos support."
+      },
+      "tradeoffs": "No cluster join.",
+      "fits_requirements": {
+        "use_cases": "pass",
+        "budget": "pass",
+        "modularity": "pass",
+        "existing_infra": "pass",
+        "form_factor": "pass",
+        "power": "pass"
+      }
+    }
+  ],
+  "recommendation": {
+    "preferred_candidate": "candidate-1",
+    "why": "Best match for silence",
+    "confidence": "medium",
+    "confidence_notes": "Apple pricing moves"
+  },
+  "open_questions": []
+}

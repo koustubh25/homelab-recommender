@@ -1,0 +1,33 @@
+{
+  "region": "AU-NSW",
+  "rate_per_kwh": 0.33,
+  "rate_source": "lib_region_exact",
+  "currency": "AUD",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "phases": [
+        {
+          "phase": 1,
+          "power_profile": {
+            "idle_w": { "min": 8, "max": 15 },
+            "light_load_w": { "min": 20, "max": 35 },
+            "peak_w": { "min": 45, "max": 70 },
+            "notes": "Prebuilt unified memory system."
+          },
+          "scenarios": [
+            {
+              "name": "Daily inference",
+              "kwh_per_month": 9,
+              "cost_per_month": 2.97,
+              "cost_per_year": 35.64
+            }
+          ]
+        }
+      ],
+      "energy_levers": [],
+      "total_combined_savings_estimate_pct": 5
+    }
+  ],
+  "notes": ""
+}

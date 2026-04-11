@@ -70,8 +70,9 @@ A typical AM5 platform with 7700, 64GB DDR5, single NVMe, no GPU idles around **
 
 Lookup ladder:
 1. Match `requirements.region.country` + `requirements.region.state_or_city` → use that exact regional rate
-2. If no state match, use the country's `_default_rate`
-3. If no country match, fall back to the inline table below and **set `rate_source: "inline_fallback_guess"`** in the energy-model output. The plan-writer will surface this as low confidence to the user.
+2. If `state_or_city` is missing but `requirements.region.city` clearly maps to a known region in the rate table, use that mapping and note the inference
+3. If no regional match, use the country's `_default_rate`
+4. If no country match, fall back to the inline table below and **set `rate_source: "inline_fallback_guess"`** in the energy-model output. The plan-writer will surface this as low confidence to the user.
 
 If the user has provided their own electricity rate in `requirements` (e.g. they read it off their bill), prefer it over both the lib file and inline defaults. Record `rate_source: "user_provided"` in the output.
 
@@ -115,6 +116,7 @@ Write `energy-model.json` to the current working directory:
 ```json
 {
   "region": "AU-VIC",
+  "rate_source": "lib_region_exact | lib_region_inferred_from_city | lib_country_default | user_provided | inline_fallback_guess",
   "rate_per_kwh": 0.30,
   "currency": "AUD",
   "candidates": [

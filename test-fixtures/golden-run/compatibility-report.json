@@ -1,0 +1,39 @@
+{
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "verdict": "pass_with_warnings",
+      "checks": [
+        {
+          "area": "cpu_motherboard",
+          "result": "pass",
+          "detail": "Ryzen 7 7700 and B650 Tomahawk WiFi are socket-compatible and supported."
+        },
+        {
+          "area": "cpu_ram",
+          "result": "pass",
+          "detail": "64GB DDR5-5200 is within the expected AM5 memory envelope for 2x32GB."
+        },
+        {
+          "area": "psu_capacity",
+          "result": "pass",
+          "detail": "RM850x covers the modeled 450W peak with comfortable headroom."
+        },
+        {
+          "area": "talos_gpu_extension",
+          "result": "pass",
+          "detail": "RTX 3090 remains within the current Talos NVIDIA extension path."
+        }
+      ],
+      "blockers": [],
+      "warnings": [
+        {
+          "area": "used_gpu_variance",
+          "detail": "Used RTX 3090 listings vary in cooler quality and prior use history.",
+          "severity": "warning"
+        }
+      ],
+      "notes": "Bench-test the used GPU before full deployment."
+    }
+  ]
+}

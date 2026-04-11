@@ -1,0 +1,18 @@
+{
+  "use_cases": ["llm_inference"],
+  "llm_details": {
+    "model_sizes": ["medium"],
+    "workload": "inference",
+    "hours_per_day": 1
+  },
+  "budget": { "amount": 3000, "currency": "AUD", "flexible": false, "phased_ok": false },
+  "region": { "country": "AU", "state_or_city": "NSW", "city": "Sydney" },
+  "modularity": { "upgrade_path_wanted": false, "used_parts_ok": false },
+  "existing_infra": { "type": "standalone", "role": "llm_box", "notes": null },
+  "form_factor": { "size": "mini", "noise": "quiet", "location": "desk" },
+  "power_constraints": { "always_on": false, "energy_cost_sensitive": true },
+  "arch_preference": { "cpu": "arm_ok", "gpu": "integrated_ok" },
+  "timeline": "now",
+  "risk_tolerance": { "aliexpress": false, "used_marketplace": false, "retail_preferred": true },
+  "notes": null
+}

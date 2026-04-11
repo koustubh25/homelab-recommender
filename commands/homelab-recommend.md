@@ -167,9 +167,11 @@ Staleness propagation:
 
 | Changed file | Stale stages |
 |---|---|
-| `requirements.json` (budget/usage only) | 4, 5, 6, 7 — keep architecture if still viable |
+| `requirements.json` (budget only; current build still fits) | 2, 4, 5, 6, 7 — re-check constraints, keep architecture if still viable |
+| `requirements.json` (budget lowered below current build total) | 2, 3, 4, 5, 6, 7 |
+| `requirements.json` (usage only, architecture unaffected) | 2, 5, 6, 7 |
 | `requirements.json` (use case / infra / arch preference) | 2, 3, 4, 5, 6, 7 |
-| `requirements.json` (region) | 4, 5, 7 (architecture unchanged) |
+| `requirements.json` (region) | 2, 4, 5, 7 (architecture unchanged unless constraints change) |
 | `build-candidates.json` | 4, 5, 6, 7 |
 | `priced-builds.json` | 6 (SKU drift check), 7 |
 | `compatibility-report.json` → fail | 3, then everything downstream |
@@ -218,7 +220,7 @@ The user can type these at any point and you should honor them:
 
 ## Hard rules
 
-- **Never skip constraint-analyzer.** Even on re-entry for a "small change", if requirements changed, constraint-analyzer must re-run before architect. New constraints create new conflicts.
+- **Never skip constraint-analyzer after requirements changes.** If `requirements.json` changed, stage 2 must re-run before any later stage that depends on those requirements. Architecture only needs to re-run if stage 2 or the new requirements invalidate the existing build.
 - **Never re-run stages that aren't stale.** Pricing is the most expensive stage (live scraping). Don't re-run it unless the build, region, or retailers changed.
 - **Always archive before overwriting.** Every requirements change writes the previous version to `history/` first. The user must be able to roll back.
 - **Always surface the diff on re-run.** The user shouldn't have to hunt for what changed.

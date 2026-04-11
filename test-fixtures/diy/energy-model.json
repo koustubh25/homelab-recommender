@@ -1,0 +1,33 @@
+{
+  "region": "AU-VIC",
+  "rate_per_kwh": 0.30,
+  "rate_source": "lib_region_exact",
+  "currency": "AUD",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "phases": [
+        {
+          "phase": 1,
+          "power_profile": {
+            "idle_w": { "min": 40, "max": 55 },
+            "light_load_w": { "min": 60, "max": 85 },
+            "peak_w": { "min": 95, "max": 130 },
+            "notes": "No discrete GPU."
+          },
+          "scenarios": [
+            {
+              "name": "Always-on worker",
+              "kwh_per_month": 36,
+              "cost_per_month": 10.8,
+              "cost_per_year": 129.6
+            }
+          ]
+        }
+      ],
+      "energy_levers": [],
+      "total_combined_savings_estimate_pct": 10
+    }
+  ],
+  "notes": ""
+}

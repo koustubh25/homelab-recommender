@@ -1,0 +1,61 @@
+{
+  "region": "AU",
+  "currency": "AUD",
+  "scraped_at": "2026-04-11T00:00:00Z",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "unit": {
+        "sku": "Minisforum MS-01 barebones",
+        "vendor": "Minisforum",
+        "retail": {
+          "min": 999,
+          "median": 1099,
+          "max": 1149,
+          "low_confidence": false,
+          "quotes": [
+            {
+              "retailer": "Minisforum",
+              "url": "https://example.com/ms01",
+              "price": 1099,
+              "stock": "in_stock",
+              "source_quality": "playwright_direct",
+              "timestamp": "2026-04-11T00:00:00Z"
+            }
+          ]
+        },
+        "used": null,
+        "flags": [],
+        "sku_match": "exact"
+      },
+      "upgrades": [
+        {
+          "category": "ram",
+          "spec": "64GB DDR5 SODIMM kit",
+          "retail": {
+            "min": 220,
+            "median": 240,
+            "max": 260,
+            "low_confidence": false,
+            "quotes": [
+              {
+                "retailer": "Mwave",
+                "url": "https://example.com/ram",
+                "price": 240,
+                "stock": "in_stock",
+                "source_quality": "webfetch_direct",
+                "timestamp": "2026-04-11T00:00:00Z"
+              }
+            ]
+          },
+          "used": null,
+          "flags": [],
+          "sku_match": "exact"
+        }
+      ],
+      "candidate_total": { "min": 1219, "median": 1339, "max": 1409 }
+    }
+  ],
+  "unreachable_retailers": [],
+  "notes": ""
+}

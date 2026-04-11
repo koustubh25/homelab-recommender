@@ -1,0 +1,44 @@
+{
+  "region": "AU",
+  "currency": "AUD",
+  "scraped_at": "2026-04-11T00:00:00Z",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "phases": [
+        {
+          "phase": 1,
+          "parts": [
+            {
+              "category": "cpu",
+              "spec": "AMD Ryzen 7 7700",
+              "retail": {
+                "min": 489,
+                "median": 499,
+                "max": 519,
+                "low_confidence": false,
+                "quotes": [
+                  {
+                    "retailer": "Mwave",
+                    "url": "https://example.com/cpu",
+                    "price": 489,
+                    "stock": "in_stock",
+                    "source_quality": "playwright_direct",
+                    "timestamp": "2026-04-11T00:00:00Z"
+                  }
+                ]
+              },
+              "used": null,
+              "flags": [],
+              "sku_match": "exact"
+            }
+          ],
+          "phase_subtotal": { "min": 489, "median": 499, "max": 519 }
+        }
+      ],
+      "candidate_total": { "min": 489, "median": 499, "max": 519 }
+    }
+  ],
+  "unreachable_retailers": [],
+  "notes": ""
+}

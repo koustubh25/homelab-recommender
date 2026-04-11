@@ -1,0 +1,33 @@
+{
+  "region": "AU-QLD",
+  "rate_per_kwh": 0.28,
+  "rate_source": "lib_region_exact",
+  "currency": "AUD",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "phases": [
+        {
+          "phase": 1,
+          "power_profile": {
+            "idle_w": { "min": 18, "max": 28 },
+            "light_load_w": { "min": 30, "max": 45 },
+            "peak_w": { "min": 65, "max": 90 },
+            "notes": "Mini PC with memory upgrade."
+          },
+          "scenarios": [
+            {
+              "name": "Always-on worker",
+              "kwh_per_month": 20,
+              "cost_per_month": 5.6,
+              "cost_per_year": 67.2
+            }
+          ]
+        }
+      ],
+      "energy_levers": [],
+      "total_combined_savings_estimate_pct": 8
+    }
+  ],
+  "notes": ""
+}

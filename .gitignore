@@ -1,0 +1,6 @@
+.playwright-mcp/
+homelab-run/
+index.html
+excalidraw.log
+__pycache__/
+*.pyc

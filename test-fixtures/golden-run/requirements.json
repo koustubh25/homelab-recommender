@@ -1,0 +1,18 @@
+{
+  "use_cases": ["llm_inference", "general_k8s"],
+  "llm_details": {
+    "model_sizes": ["medium"],
+    "workload": "inference",
+    "hours_per_day": 3
+  },
+  "budget": { "amount": 2500, "currency": "AUD", "flexible": true, "phased_ok": true },
+  "region": { "country": "AU", "state_or_city": "VIC", "city": "Melbourne" },
+  "modularity": { "upgrade_path_wanted": true, "used_parts_ok": true },
+  "existing_infra": { "type": "talos_k8s", "role": "worker_node", "notes": "must join existing cluster" },
+  "form_factor": { "size": "tower", "noise": "normal", "location": "home_office" },
+  "power_constraints": { "always_on": true, "energy_cost_sensitive": true },
+  "arch_preference": { "cpu": "no_preference", "gpu": "nvidia_preferred_for_cuda" },
+  "timeline": "this_month",
+  "risk_tolerance": { "aliexpress": false, "used_marketplace": true, "retail_preferred": true },
+  "notes": "iter 1: initial intake"
+}

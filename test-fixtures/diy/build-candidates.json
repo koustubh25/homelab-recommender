@@ -1,0 +1,44 @@
+{
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "name": "Balanced Tower",
+      "type": "diy",
+      "summary": "Balanced phased tower for Talos and local inference.",
+      "binding_constraint": "budget plus future GPU path",
+      "phases": [
+        {
+          "phase": 1,
+          "goal": "Functional worker now",
+          "parts": [
+            {
+              "category": "cpu",
+              "spec": "AMD Ryzen 7 7700",
+              "key_attrs": { "socket": "AM5" },
+              "rationale": "Good efficiency",
+              "alternatives_considered": ["Ryzen 5 7600"],
+              "why_not_alternatives": "Less headroom"
+            }
+          ],
+          "delivered_capability": "General k8s plus CPU inference"
+        }
+      ],
+      "tradeoffs": "GPU comes later.",
+      "fits_requirements": {
+        "use_cases": "pass",
+        "budget": "pass",
+        "modularity": "pass",
+        "existing_infra": "pass",
+        "form_factor": "pass",
+        "power": "pass"
+      }
+    }
+  ],
+  "recommendation": {
+    "preferred_candidate": "candidate-1",
+    "why": "Best balance",
+    "confidence": "high",
+    "confidence_notes": "Stable parts availability"
+  },
+  "open_questions": []
+}

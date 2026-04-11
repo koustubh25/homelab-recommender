@@ -40,6 +40,16 @@ Then restart Claude Code.
 /homelab-recommend
 ```
 
+## Validate Contracts
+
+```bash
+python3 scripts/validate_contracts.py
+```
+
+This checks the documented JSON handoff shapes across the agents, including DIY, prebuilt, and hybrid candidates.
+
+It also validates a completed golden run fixture under `test-fixtures/golden-run/`, including `constraint-analysis.json`, `compatibility-report.json`, and `PLAN.md`.
+
 The plugin will:
 
 1. Ask you a few questions about what you want the machine to do

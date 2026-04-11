@@ -1,0 +1,36 @@
+{
+  "region": "AU",
+  "currency": "AUD",
+  "scraped_at": "2026-04-11T00:00:00Z",
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "unit": {
+        "sku": "Mac mini M4 Pro 24GB/512GB",
+        "vendor": "Apple",
+        "retail": {
+          "min": 2499,
+          "median": 2549,
+          "max": 2599,
+          "low_confidence": false,
+          "quotes": [
+            {
+              "retailer": "Apple AU",
+              "url": "https://example.com/mac-mini",
+              "price": 2599,
+              "stock": "in_stock",
+              "source_quality": "playwright_direct",
+              "timestamp": "2026-04-11T00:00:00Z"
+            }
+          ]
+        },
+        "used": null,
+        "flags": [],
+        "sku_match": "exact"
+      },
+      "candidate_total": { "min": 2499, "median": 2549, "max": 2599 }
+    }
+  ],
+  "unreachable_retailers": [],
+  "notes": ""
+}

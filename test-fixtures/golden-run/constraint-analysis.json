@@ -1,0 +1,12 @@
+{
+  "verdict": "warnings",
+  "blockers": [],
+  "warnings": [
+    {
+      "concern": "Medium-model inference will be slower until a GPU is added",
+      "evidence": "Phase 1 is CPU-only and designed to be useful before the discrete GPU upgrade",
+      "mitigation": "Use quantized smaller models in Phase 1 or add the GPU in Phase 2"
+    }
+  ],
+  "notes_for_architect": "Keep Talos compatibility intact and preserve the later NVIDIA upgrade path."
+}

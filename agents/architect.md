@@ -167,7 +167,7 @@ Write `build-candidates.json` to the current working directory:
     "confidence": "high | medium | low",
     "confidence_notes": "What would change this recommendation"
   },
-  "_schema_note": "For type='prebuilt' or 'sbc', replace 'phases' with a single 'unit' object: { sku, vendor, key_attrs, rationale, alternatives_considered, why_not_alternatives, delivered_capability }. For type='hybrid', use a 'unit' object plus an 'upgrades' array of part objects (same shape as DIY parts). For type='diy', use 'phases' as shown above.",
+  "_schema_note": "For type='prebuilt' or 'sbc', replace 'phases' with a single 'unit' object: { sku, vendor, model, category, key_attrs, rationale, alternatives_considered, why_not_alternatives, delivered_capability, tradeoffs }. For type='hybrid', use a 'unit' object plus an 'upgrades' array of part objects (same shape as DIY parts). For type='diy', use 'phases' as shown above.",
   "open_questions": [
     "Anything the architect noticed that requirements didn't cover and should be confirmed before purchase"
   ]

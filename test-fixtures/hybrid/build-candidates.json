@@ -1,0 +1,49 @@
+{
+  "candidates": [
+    {
+      "id": "candidate-1",
+      "name": "MS-01 Upgrade Path",
+      "type": "hybrid",
+      "summary": "Compact x86 node with aftermarket memory and storage.",
+      "binding_constraint": "compact dual-NIC form factor",
+      "unit": {
+        "sku": "Minisforum MS-01 barebones",
+        "vendor": "Minisforum",
+        "model": "MS-01",
+        "category": "mini_pc",
+        "key_attrs": { "network": "dual 10GbE" },
+        "rationale": "Small and rack friendly.",
+        "alternatives_considered": ["Used SFF"],
+        "why_not_alternatives": "Larger",
+        "delivered_capability": "Compact virtualization node",
+        "tradeoffs": "Limited GPU path."
+      },
+      "upgrades": [
+        {
+          "category": "ram",
+          "spec": "64GB DDR5 SODIMM kit",
+          "key_attrs": { "capacity_gb": 64 },
+          "rationale": "Needed for VM density",
+          "alternatives_considered": ["32GB kit"],
+          "why_not_alternatives": "Less headroom"
+        }
+      ],
+      "tradeoffs": "No future discrete GPU.",
+      "fits_requirements": {
+        "use_cases": "pass",
+        "budget": "pass",
+        "modularity": "partial",
+        "existing_infra": "pass",
+        "form_factor": "pass",
+        "power": "pass"
+      }
+    }
+  ],
+  "recommendation": {
+    "preferred_candidate": "candidate-1",
+    "why": "Best network density",
+    "confidence": "high",
+    "confidence_notes": "Common homelab pattern"
+  },
+  "open_questions": []
+}

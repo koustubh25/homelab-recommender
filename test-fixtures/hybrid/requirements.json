@@ -1,0 +1,14 @@
+{
+  "use_cases": ["general_k8s"],
+  "llm_details": null,
+  "budget": { "amount": 1500, "currency": "AUD", "flexible": false, "phased_ok": true },
+  "region": { "country": "AU", "state_or_city": "QLD", "city": "Brisbane" },
+  "modularity": { "upgrade_path_wanted": true, "used_parts_ok": true },
+  "existing_infra": { "type": "proxmox", "role": "worker_node", "notes": null },
+  "form_factor": { "size": "mini", "noise": "normal", "location": "rack_shelf" },
+  "power_constraints": { "always_on": true, "energy_cost_sensitive": true },
+  "arch_preference": { "cpu": "x86_preferred", "gpu": "none" },
+  "timeline": "this_month",
+  "risk_tolerance": { "aliexpress": false, "used_marketplace": true, "retail_preferred": true },
+  "notes": null
+}
