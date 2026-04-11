@@ -1,6 +1,6 @@
 # homelab-recommender
 
-A homelab hardware recommendation workflow that runs as a Claude Code plugin and can also be used directly from Codex. It considers DIY builds, prebuilts (Mac mini, NUC, Beelink, Minisforum), used SFF workstations, and SBCs (Raspberry Pi, Rock 5, Jetson). It fetches live prices and models running costs.
+A homelab hardware recommendation workflow that runs as a Claude Code plugin and can also be used directly from Codex. It considers DIY builds, prebuilts (Mac mini, Mac Studio, NUC, Beelink, Minisforum), used SFF workstations, and SBCs (Raspberry Pi, Rock 5, Jetson). It fetches live prices and models running costs.
 
 ## Prerequisite: Playwright MCP (recommended)
 
