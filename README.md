@@ -2,6 +2,8 @@
 
 A homelab hardware recommendation workflow that runs as a Claude Code plugin and can also be used directly from Codex. It considers DIY builds, prebuilts (Mac mini, Mac Studio, NUC, Beelink, Minisforum), used SFF workstations, and SBCs (Raspberry Pi, Rock 5, Jetson). It fetches live prices and models running costs.
 
+It works especially well for choosing hardware for local AI inference, where tradeoffs like memory bandwidth, VRAM, power draw, noise, and upgrade path matter as much as raw CPU/GPU specs.
+
 ## Prerequisite: Playwright MCP (recommended)
 
 Live prices from major retailers (Mwave, Scorptec, Amazon, Apple, etc.) require a headless browser. Without it, the plugin falls back to lower-quality price sources. Set this up **before** installing the plugin.
