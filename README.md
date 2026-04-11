@@ -1,6 +1,6 @@
 # homelab-recommender
 
-A Claude Code plugin that recommends homelab hardware based on your needs. Considers DIY builds, prebuilts (Mac mini, NUC, Beelink, Minisforum), used SFF workstations, and SBCs (Raspberry Pi, Rock 5, Jetson). Fetches live prices and models running costs.
+A homelab hardware recommendation workflow that runs as a Claude Code plugin and can also be used directly from Codex. It considers DIY builds, prebuilts (Mac mini, NUC, Beelink, Minisforum), used SFF workstations, and SBCs (Raspberry Pi, Rock 5, Jetson). It fetches live prices and models running costs.
 
 ## Prerequisite: Playwright MCP (recommended)
 
@@ -27,18 +27,45 @@ Or add manually to `~/.claude.json`:
 
 Then restart Claude Code.
 
-## Install
+## Install In Claude Code
 
 ```
 /plugin marketplace add koustubh25/homelab-recommender
 /plugin install homelab-recommender@homelab-recommender
 ```
 
-## Use
+## Use In Claude Code
 
 ```
 /homelab-recommend
 ```
+
+## Use In Codex
+
+This repo can also be run directly in Codex without extra plugin packaging.
+
+Open the repo in Codex and ask it to run the homelab recommender workflow from this repository.
+
+Example prompt:
+
+```text
+Run the homelab recommender.
+```
+
+If you want live retailer pricing in Codex, add Playwright MCP there as well:
+
+```bash
+codex mcp add playwright -- npx @playwright/mcp@latest
+```
+
+Then restart Codex. Without Playwright MCP, the workflow can still run, but the pricing stage will fall back to weaker sources.
+
+## Runtime Model
+
+- Claude Code uses the packaged plugin under `.claude-plugin/`.
+- Codex uses the repo directly and follows the same workflow prompts in the repository.
+- `commands/`, `agents/`, `lib/`, and `test-fixtures/` are shared across both runtimes.
+- `homelab-run/` is the artifact directory in both runtimes.
 
 ## Validate Contracts
 
@@ -50,7 +77,7 @@ This checks the documented JSON handoff shapes across the agents, including DIY,
 
 It also validates a completed golden run fixture under `test-fixtures/golden-run/`, including `constraint-analysis.json`, `compatibility-report.json`, and `PLAN.md`.
 
-The plugin will:
+The workflow will:
 
 1. Ask you a few questions about what you want the machine to do
 2. Check your requirements for impossible combinations
@@ -65,7 +92,7 @@ You can change requirements at any checkpoint and the plugin will re-run only th
 
 ## Agents
 
-The plugin is a pipeline of seven specialized agents:
+The workflow is a pipeline of seven specialized agents:
 
 - **intake-advisor** — Asks one focused question at a time to build a structured requirements profile. Supports patch mode for changing requirements mid-flow.
 - **constraint-analyzer** — Catches impossible requirement intersections (e.g. "ARM + Talos + modular + under $2k") before any build design happens.
